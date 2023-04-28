@@ -13,9 +13,6 @@ export const MovieView = ({ movies, username, favoriteMovies }) => {
 
   const [movieExists, setMovieExists] = useState(false);
   const [userFavoriteMovies, setUserFavoriteMovies] = useState((storedUser && storedUser.FavoriteMovies) ? storedUser.FavoriteMovies : favoriteMovies);
-
-  console.log(username)
-
   // AddFavMovie
   const addFavoriteMovie = () => {
     fetch(`https://meineflix.herokuapp.com/users/${username}/movies/${movieId}`, {
@@ -71,14 +68,11 @@ export const MovieView = ({ movies, username, favoriteMovies }) => {
 
   const movieAdded = () => {
     const hasMovie = userFavoriteMovies && userFavoriteMovies.some((m) => m === movieId);
-    console.log("userFavMov", userFavoriteMovies);
-    console.log("movieId", movieId);
+
     if (hasMovie) {
       setMovieExists(true);
     }
   };
-
-  console.log("movieExists", movieExists);
 
   useEffect(() => {
     movieAdded();
@@ -102,7 +96,7 @@ export const MovieView = ({ movies, username, favoriteMovies }) => {
       </Link>
       <br />
       <br />
-      <Button 
+      <Button
         className="button-add-favorite"
         onClick={addFavoriteMovie}
         disabled={movieExists}
@@ -111,13 +105,13 @@ export const MovieView = ({ movies, username, favoriteMovies }) => {
       </Button>
       <br/>
       <br/>
-      <Button 
+      <Button
         variant="danger"
         onClick={removeFavoriteMovie}
-        
+
       >
         Remove from Favorites
-      </Button> 
+      </Button>
     </Col>
   </Row>
   );

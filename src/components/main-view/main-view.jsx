@@ -21,7 +21,7 @@ export const MainView = () => {
     const updateUser = user => {
         setUser(user);
         localStorage.setItem("user", JSON.stringify(user));
-    } 
+    }
 
     useEffect(() => {
         if (!token) return;
@@ -37,7 +37,7 @@ export const MainView = () => {
                     title: movie.Title,
                     description: movie.Description,
                     genre: movie.Genre,
-                    
+
                     image: movie.Image
                 };
             });
@@ -77,7 +77,7 @@ export const MainView = () => {
                                         </Col>
                                     )}
                                 </>
-                            }                    
+                            }
                         />
                         <Route
                             path="/login"
@@ -118,10 +118,10 @@ export const MainView = () => {
                                 <>
                                     {!user ? (
                                         <Navigate to="/login" replace />
-                                    ) : movies.length === 0 ? ( 
+                                    ) : movies.length === 0 ? (
                                         <Col style={{color: "white"}}><p>The list is empty. Loading data from api...</p></Col>
                                     ) : (
-                                        <MovieView movies={movies} user={user} token={token} updateUser={updateUser}/>
+                                        <MovieView movies={movies} username={user.Username} token={token} updateUser={updateUser}/>
                                     )}
                                 </>
                             }
@@ -132,7 +132,7 @@ export const MainView = () => {
                                 <>
                                     {!user ? (
                                         <Navigate to="/login" replace />
-                                    ) : movies.length === 0 ? ( 
+                                    ) : movies.length === 0 ? (
                                         <Col style={{color: "white"}}><p>The list is empty. Loading data from api...</p></Col>
                                     ) : (
                                         <>

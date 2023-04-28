@@ -27,7 +27,6 @@ const getUser = (token) => {
       headers: { Authorization: `Bearer ${token}`},
     }).then(response => response.json())
     .then((response) => {
-      console.log("getUser response", response)
       setUsername(response.Username);
       setEmail(response.Email);
       setPassword(response.Password);
@@ -35,11 +34,8 @@ const getUser = (token) => {
       setFavoriteMovies(response.FavoriteMovies)
     })
   }
-  console.log("userFavMov", favoriteMovies)
 
   const favMovies = movies.filter((movie) => favoriteMovies.includes(movie.id));
-
-  console.log("favMovies", favMovies)
 
     //Filter favorite movies for later display
 useEffect (() => {
