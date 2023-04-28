@@ -16,15 +16,14 @@ export const UpdateForm = ({ user }) => {
     const [birthday, setBirthday] = useState("");
 
     const handleSubmit = async(event) => {
-        event.preventDefault();  
-    
+        event.preventDefault();
+
         const data = {
           Username: username,
           Password: password,
           Email: email,
           Birthday: birthday
         };
-    console.log(data)
         const updateUser = await fetch(`https://meineflix.herokuapp.com/users/${user.Username}`, {
           method: "PUT",
           body: JSON.stringify(data),
@@ -32,21 +31,20 @@ export const UpdateForm = ({ user }) => {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json"},
         })
-    
+
         const response = await updateUser.json()
-        console.log(response)
         if (response) {
           alert("Account successfully updated! Please log in again");
           localStorage.clear();
-          window.location.reload(); 
+          window.location.reload();
         } else {
           alert("Something went wrong");
         }
       };
-    
-    
+
+
       const handleDeregister = () => {
-    
+
         fetch(`https://meineflix.herokuapp.com/users/${user.Username}`, {
           method: "DELETE",
           headers: {
@@ -57,13 +55,13 @@ export const UpdateForm = ({ user }) => {
           if (response.ok) {
             alert("Account successfully deleted");
             localStorage.clear();
-            window.location.reload(); 
+            window.location.reload();
           } else {
             alert("Something went wrong");
           }
         });
       };
-        
+
     return (
       <>
         <h4>Update Profile Information</h4>
@@ -71,33 +69,33 @@ export const UpdateForm = ({ user }) => {
           <Form.Group>
             <Form.Label>Username: </Form.Label>
             <Form.Control
-              type="username" 
-              value={username} 
-              onChange={e => setUsername(e.target.value)} 
+              type="username"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Password: </Form.Label>
-            <Form.Control 
-              type="password" 
-              value={password} 
-              onChange={e => setPassword(e.target.value)} 
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
           />
           </Form.Group>
           <Form.Group>
             <Form.Label>Email: </Form.Label>
-            <Form.Control 
+            <Form.Control
               type="text"
-              value={email} 
-              onChange={e => setEmail(e.target.value)} 
+              value={email}
+              onChange={e => setEmail(e.target.value)}
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Birthday: </Form.Label>
-            <Form.Control 
-              type="date" 
-              value={birthday} 
-              onChange={e => setBirthday(e.target.value)} 
+            <Form.Control
+              type="date"
+              value={birthday}
+              onChange={e => setBirthday(e.target.value)}
             />
             </Form.Group>
             <Button type="submit" className="button-primary mt-3">Save Changes</Button>

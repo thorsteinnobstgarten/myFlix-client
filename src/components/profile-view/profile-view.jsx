@@ -31,7 +31,6 @@ const getUser = (token) => {
     headers: { Authorization: `Bearer ${token}`},
   }).then(response => response.json())
   .then((response) => {
-    console.log("getUser response", response)
     setUsername(response.Username);
     setEmail(response.Email);
     setPassword(response.Password);
@@ -39,7 +38,6 @@ const getUser = (token) => {
     setFavoriteMovies(response.FavoriteMovies)
   })
 }
-console.log("userFavMov", favoriteMovies)
 
 useEffect(()=> {
   getUser(token);
@@ -56,7 +54,7 @@ useEffect(()=> {
                 <p>Username: {username}</p>
                 <p>Birthday: {birthday}</p>
                 <p>Email: {email}</p>
-              </div> 
+              </div>
             </Card.Body>
           </Card>
         </Col>
